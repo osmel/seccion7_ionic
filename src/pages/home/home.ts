@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {  ModalController } from 'ionic-angular';
 import { SubirPage } from "../subir/subir";
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
 
 /*
 
@@ -20,14 +22,15 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
-})
+}) 
 export class HomePage {
 
   hayMas:boolean = true;
 
-
+   posts: FirebaseListObservable<any[]>;
   constructor(
             private modalCtrl:ModalController, 
+             private af: AngularFireDatabase
             /*
                private _cas: CargaArchivosService,
                private _auth: AuthService,
@@ -35,6 +38,8 @@ export class HomePage {
                private toastCtrl: ToastController 
               */
                ) {
+
+    this.posts = af.list('/posts');
 
     //this._cas.cargar_imagenes();
 

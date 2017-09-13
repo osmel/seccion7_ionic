@@ -31,12 +31,14 @@
 <ion-content>
 
 	
-	<ion-card>	
-		<img src="https://image.shutterstock.com/z/stock-vector-abstract-grey-and-white-tech-geometric-corporate-design-background-eps-562045990.jpg">			
+	<ion-card class="text" *ngFor="let post of posts | async">
+			
+		<img [src]="post.img">			
 		<ion-card-content>
 
 		     <ion-card-title>
-		         post1 
+		         {{post.nombre}} 
+		         
 		      </ion-card-title>
 
 		</ion-card-content>

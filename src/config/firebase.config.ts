@@ -1,10 +1,11 @@
 
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyAhi-VcrfwdfXNlTkAzRuUXNeYRKVtlWps",
-  authDomain: "gag-39148.firebaseapp.com",
-  databaseURL: "https://gag-39148.firebaseio.com",
-  projectId: "gag-39148",
-  storageBucket: "gag-39148.appspot.com",
-  messagingSenderId: "235124017305"
+	apiKey: "AIzaSyCUhVDU2CrCJ8ADp9QS89dEp8bXHAIJjNY",
+	authDomain: "ionic-98c3b.firebaseapp.com",
+	databaseURL: "https://ionic-98c3b.firebaseio.com",
+	projectId: "ionic-98c3b",
+	storageBucket: "ionic-98c3b.appspot.com",
+	messagingSenderId: "118519821243"
+
 };
