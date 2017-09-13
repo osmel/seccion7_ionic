@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { ViewController, ToastController, Platform, LoadingController } from "ionic-angular";
 
-/*
 // plugins
 import { Camera, CameraOptions } from '@ionic-native/camera';
+
+/*
+
+
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 
 // servicios
@@ -21,13 +24,13 @@ export class SubirPage {
   img:string = "";
 
   constructor( private viewCtrl: ViewController,
-               /*
+               private camera: Camera,  //tomar foto
                private toastCtrl: ToastController,
+               private platform: Platform,
+               /*
                private loadingCtrl: LoadingController,
                private _cas: CargaArchivosService,
-               private platform: Platform,
-               private camera: Camera,
-               private imagePicker: ImagePicker 
+               private imagePicker: ImagePicker   //cargar de las imagenes nativas o del telefono
 				*/
                ) {
   }
@@ -73,7 +76,7 @@ export class SubirPage {
 
   }
 
-/*
+
   mostrar_camara(){
 
     if( !this.platform.is("cordova") ){
@@ -83,17 +86,18 @@ export class SubirPage {
 
 
     const options: CameraOptions = {
-        quality: 40,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE,
-        correctOrientation: true
-    }
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true //para que no se distorcione la imagen
+    }    
 
     this.camera.getPicture(options).then((imageData) => {
        // imageData is either a base64 encoded string or a file URI
        // If it's base64:
-       this.imgPreview = 'data:image/jpeg;base64,' + imageData;
+       this.imgPreview = 'data:image/jpeg;base64,' + imageData;   //el string de foto es de base64
+       //let base64Image = 'data:image/jpeg;base64,' + imageData;
        this.img = imageData;
 
       }, (err) => {
@@ -106,6 +110,7 @@ export class SubirPage {
 
   }
 
+/*
   seleccionar_fotos(){
 
     if( !this.platform.is("cordova") ){
@@ -140,6 +145,9 @@ export class SubirPage {
   }
 
 
+
+  */
+
   private mostrar_toast( texto:string ){
 
     this.toastCtrl.create({
@@ -148,8 +156,6 @@ export class SubirPage {
     }).present();
 
   }
-
-  */
 
 
 }

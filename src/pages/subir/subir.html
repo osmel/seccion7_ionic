@@ -11,7 +11,7 @@
 
     </ion-buttons>
 
-<!--
+
     <ion-title>{{ titulo | placeholder:"Crear Post" }}</ion-title>
 
 
@@ -19,13 +19,14 @@
 
       <button ion-button
               [disabled]=" img.length < 2 || titulo.length < 2 "
-              (click)="crear_post()">
+              >
         Crear post
       </button>
+      <!-- (click)="crear_post()" -->
 
     </ion-buttons>
 
--->
+
 
   </ion-navbar>
 
@@ -39,15 +40,14 @@
 
     <ion-item>
       <ion-label floating>Titulo</ion-label>
-      <!--<ion-input type="text" [(ngModel)]="titulo"></ion-input>-->
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="titulo"></ion-input>
+      
     </ion-item>
 
-    <!-- <ion-item *ngIf="imgPreview"> -->
-     <ion-item > 
-      <!--<img [src]="imgPreview">-->
-      <img src="https://image.shutterstock.com/z/stock-vector-abstract-grey-and-white-tech-geometric-corporate-design-background-eps-562045990.jpg">		
-    </ion-item>
+    <!--  -->
+     <ion-item *ngIf="imgPreview">
+          <img [src]="imgPreview">
+     </ion-item>
 
   </ion-list>
 
@@ -74,6 +74,7 @@
         <button ion-button
                 block
                 icon-left
+                (click)="mostrar_camara()"
                 >
             <ion-icon name="camera"></ion-icon>
             Camara
@@ -92,5 +93,5 @@
 </ion-content>
 <!--
 (click)="seleccionar_fotos()"
-(click)="mostrar_camara()"
+
 -->

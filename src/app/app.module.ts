@@ -16,13 +16,19 @@ import { HomePage } from '../pages/home/home';
 import { SubirPage } from '../pages/subir/subir';
 
 
+// Pipes
+import { PlaceholderPipe } from "../pipes/placeholder";
+
+//servicios
+import { Camera } from '@ionic-native/camera';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    SubirPage
+    SubirPage,
+    PlaceholderPipe
   ],
   imports: [
     BrowserModule,
@@ -42,6 +48,7 @@ import { SubirPage } from '../pages/subir/subir';
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
