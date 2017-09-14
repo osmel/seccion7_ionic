@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import {  ModalController } from 'ionic-angular';
 import { SubirPage } from "../subir/subir";
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database'; //, FirebaseListObservable
+
+// servicios personalizado
+import { CargaArchivosService } from "../../providers/carga-archivos";
 
 
 /*
@@ -27,21 +30,24 @@ export class HomePage {
 
   hayMas:boolean = true;
 
-   posts: FirebaseListObservable<any[]>;
+   // posts: FirebaseListObservable<any[]>;
   constructor(
             private modalCtrl:ModalController, 
-             private af: AngularFireDatabase
+            private _cas: CargaArchivosService,
+             
             /*
-               private _cas: CargaArchivosService,
+              private af: AngularFireDatabase
+               
                private _auth: AuthService,
                private socialSharing: SocialSharing,
                private toastCtrl: ToastController 
               */
                ) {
 
-    this.posts = af.list('/posts');
+    //this.posts = af.list('/posts');
 
-    //this._cas.cargar_imagenes();
+    //aprovechanco de la promesa que esta regresando
+    this._cas.cargar_imagenes();
 
   }
 /*

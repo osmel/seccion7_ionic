@@ -31,7 +31,8 @@
 <ion-content>
 
 	
-	<ion-card class="text" *ngFor="let post of posts | async">
+	<!--<ion-card class="text" *ngFor="let post of posts | async"> -->
+  <ion-card *ngFor="let post of _cas.imagenes">
 			
 		<img [src]="post.img">			
 		<ion-card-content>

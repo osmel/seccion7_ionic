@@ -6,14 +6,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { ImagePicker, ImagePickerOptions  } from '@ionic-native/image-picker';
 
-/*
-
-
-import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
-
-// servicios
+// servicios personalizado
 import { CargaArchivosService } from "../../providers/carga-archivos";
-*/
+
 
 @Component({
   selector: 'page-subir',
@@ -29,49 +24,51 @@ export class SubirPage {
                private camera: Camera,  //tomar foto
                private toastCtrl: ToastController,
                private platform: Platform,
-               private imagePicker: ImagePicker   //cargar de las imagenes nativas o del telefono
-               /*
-               private loadingCtrl: LoadingController,
-               private _cas: CargaArchivosService,
+               private imagePicker: ImagePicker,  //cargar de las imagenes nativas o del telefono
+               private _cas: CargaArchivosService,  
                
-				*/
+               private loadingCtrl: LoadingController
+               
+               
+				
                ) {
   }
-/*
+
 
   crear_post(){
     console.log("Subiendo imagen...");
-
+    
     let archivo = {
       'titulo': this.titulo,
       'img': this.img
     };
 
+    //aqui inicia el loading
     let loader = this.loadingCtrl.create({
       content: "Subiendo..."
     });
     loader.present();
 
 
-
+     //el servicio tiene una promesa y llamará a "then" o a "error"
     this._cas.cargar_imagenes_firebase( archivo )
           .then(
             ()=>{
-              loader.dismiss();
-              this.cerrar_modal();
+              loader.dismiss(); //aqui finaliza el loading
+              this.cerrar_modal();  //cerramos la modal porq ya termino
             },
 
             ( error )=>{
-              loader.dismiss();
+              loader.dismiss();  //aqui finaliza el loading
               this.mostrar_toast("Error al cargar: " + error );
               console.log("Error al cargar " + JSON.stringify(error) );
             }
 
            )
-
+   
 
   }
-*/
+
 
   cerrar_modal(){
 

@@ -22,6 +22,7 @@ import { PlaceholderPipe } from "../pipes/placeholder";
 //servicios
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { CargaArchivosService } from '../providers/carga-archivos';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
     SplashScreen,
     Camera,
     ImagePicker,
+    CargaArchivosService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
