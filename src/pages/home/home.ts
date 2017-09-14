@@ -89,26 +89,46 @@ export class HomePage {
   }
 
 
-  cargar_siguientes( infiniteScroll:any ){
+  
+
+
+
+
+  
+  */
+
+
+
+cargar_siguientes( infiniteScroll:any ){
 
     console.log("Siguientes...");
 
-    this._cas.cargar_imagenes()
+    this._cas.cargar_imagenes()  //esta es una promesa que esta en el servicio
         .then(
-          ( existenMas:boolean )=>{
-            infiniteScroll.complete();
+          ( existenMas:boolean )=>{  //si ya no hay más que no busque más
+            infiniteScroll.complete(); //llamar a este proceso cdo ya terminamos
             console.log( existenMas );
             this.hayMas = existenMas;
           }
         )
 
 
+  }  
+
+  /*
+doInfinite(infiniteScroll) {
+    console.log('Acaba de comenzar la sincronizacion async');
+
+    setTimeout(() => {
+      for (let i = 0; i < 30; i++) {
+        this.items.push( this.items.length );
+      }
+
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 500);
   }
 
-
-
-
-  
   */
 
   mostrar_modal(){

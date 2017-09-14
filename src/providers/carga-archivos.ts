@@ -83,7 +83,7 @@ cargar_imagenes_firebase( archivo:archivoSubir ){
   }
 
 
-
+//aqui hay un "observador dentro de una promesa
  cargar_imagenes(){
 
     return new Promise(  (resolve, reject)=>{
