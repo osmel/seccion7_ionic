@@ -4,12 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-//firebase
-import { AngularFireModule } from 'angularfire2';  //angularFire se necesita siempre que se use firebase
-import { AngularFireDatabaseModule } from 'angularfire2/database'; // solo necesario para las caracteristicas de database 
-import { AngularFireAuthModule } from 'angularfire2/auth';  // solo necesario para las caracteristicas de autenticación
-import { firebaseConfig } from '../config/firebase.config'; // variable de ambientes
-
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -25,12 +19,31 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { CargaArchivosService } from '../providers/carga-archivos';
 
 
+
+//firebase
+import { AngularFireModule } from 'angularfire2';  //angularFire se necesita siempre que se use firebase
+import { AngularFireDatabaseModule } from 'angularfire2/database'; // solo necesario para las caracteristicas de database 
+import { AngularFireAuthModule } from 'angularfire2/auth';  // solo necesario para las caracteristicas de autenticación
+import { firebaseConfig } from '../config/firebase.config'; // variable de ambientes
+
+//facebook
+import { Facebook } from '@ionic-native/facebook';
+
+//Logueo
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+
+
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SubirPage,
-    PlaceholderPipe
+    PlaceholderPipe,
+    LoginPage,
+    SignupPage
+
   ],
   imports: [
     BrowserModule,
@@ -45,7 +58,9 @@ import { CargaArchivosService } from '../providers/carga-archivos';
   entryComponents: [
     MyApp,
     HomePage,
-    SubirPage
+    SubirPage,
+    LoginPage,
+    SignupPage    
   ],
   providers: [
     StatusBar,
@@ -53,7 +68,8 @@ import { CargaArchivosService } from '../providers/carga-archivos';
     Camera,
     ImagePicker,
     CargaArchivosService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Facebook
   ]
 })
 export class AppModule {}

@@ -20,9 +20,31 @@ export class LoginPage {
     private toastCtrl: ToastController,
     private facebook: Facebook,
     private platform: Platform
-  ) { }
+  ) { 
 
-  login() {
+
+  }
+
+  ingresaFacebook() { //loginFacebook
+    if (this.platform.is('cordova')) {
+      return this.facebook.login(['email', 'public_profile']).then(res => {
+        const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+        return firebase.auth().signInWithCredential(facebookCredential);
+      })
+    }
+    else {
+      return this.afAuth.auth
+        .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+        .then(res => console.log(res));
+    }
+  }
+
+  registrate() { //signup
+    this.navCtrl.push(SignupPage, { email: this.loginData.email });
+  }
+
+
+  ingresaCorreo() {  //login
     this.afAuth.auth.signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
       .then(auth => {
         // Do custom things with auth
@@ -37,21 +59,10 @@ export class LoginPage {
       });
   }
 
-  signup() {
-    this.navCtrl.push(SignupPage, { email: this.loginData.email });
+  salir() {  //signOut
+    this.afAuth.auth.signOut();
   }
 
-  loginFacebook() {
-    if (this.platform.is('cordova')) {
-      return this.facebook.login(['email', 'public_profile']).then(res => {
-        const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
-        return firebase.auth().signInWithCredential(facebookCredential);
-      })
-    }
-    else {
-      return this.afAuth.auth
-        .signInWithPopup(new firebase.auth.FacebookAuthProvider())
-        .then(res => console.log(res));
-    }
-  }
+  
+
 }

@@ -5,7 +5,11 @@ import { AngularFireDatabase } from 'angularfire2/database'; //, FirebaseListObs
 
 // servicios personalizado
 import { CargaArchivosService } from "../../providers/carga-archivos";
+//
+import { AngularFireAuth } from 'angularfire2/auth';
 
+import {  NavController } from 'ionic-angular';
+import { LoginPage } from '../../pages/login/login';
 
 /*
 
@@ -32,8 +36,11 @@ export class HomePage {
 
    // posts: FirebaseListObservable<any[]>;
   constructor(
+            public navCtrl: NavController,
             private modalCtrl:ModalController, 
             private _cas: CargaArchivosService,
+            private afAuth: AngularFireAuth,
+            
              
             /*
               private af: AngularFireDatabase
@@ -50,6 +57,16 @@ export class HomePage {
     this._cas.cargar_imagenes();
 
   }
+
+  salir() {  //signOut
+    
+
+    //this.navCtrl.push(LoginPage);
+    this.afAuth.auth.signOut();
+    //this.navCtrl.popToRoot();
+    //this.navCtrl.pop();
+  }
+
 /*
 
   salir(){

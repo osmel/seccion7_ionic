@@ -1,21 +1,27 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Login</ion-title>
+    <ion-title>Login</ion-title> 
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <!--
   <ion-list>
     <ion-item>
-      <ion-label floating>E-Mail</ion-label>
+      <ion-label floating>Correo</ion-label>
       <ion-input type="email" [(ngModel)]="loginData.email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Password</ion-label>
+      <ion-label floating>Contraseña</ion-label>
       <ion-input type="password" [(ngModel)]="loginData.password"></ion-input>
     </ion-item>
-  </ion-list>
-  <button full ion-button (click)="login()" [disabled]="!loginData.email || !loginData.password">Login</button>
-  <button full ion-button (click)="loginFacebook()">Login with Facebook</button>
-  <a href="#" (click)="signup()">Signup for an Account</a>
+  </ion-list> 
+  
+  <button full ion-button (click)="ingresaCorreo()" [disabled]="!loginData.email || !loginData.password">Ingresa con Correo</button>
+  -->
+  <button full ion-button (click)="ingresaFacebook()">Ingresa con Facebook</button>
+<!--  
+  <a href="#" (click)="registrate()">Regístrese para obtener una cuenta</a>
+-->
+  <a href="#" (click)="salir()">Salir</a>
 </ion-content>
