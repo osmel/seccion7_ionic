@@ -144,3 +144,6 @@ https://www.qrcode.es/es/generador-qr-code/
 
 ///////////////////////////////////////////
 
+
+ionic cordova plugin add cordova-plugin-telerik-imagepicker --variable PHOTO_LIBRARY_USAGE_DESCRIPTION="mi mensaje para subir imagen"
+npm install --save @ionic-native/image-picker

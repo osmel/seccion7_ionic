@@ -4,6 +4,8 @@ import { ViewController, ToastController, Platform, LoadingController } from "io
 // plugins
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
+import { ImagePicker, ImagePickerOptions  } from '@ionic-native/image-picker';
+
 /*
 
 
@@ -27,10 +29,11 @@ export class SubirPage {
                private camera: Camera,  //tomar foto
                private toastCtrl: ToastController,
                private platform: Platform,
+               private imagePicker: ImagePicker   //cargar de las imagenes nativas o del telefono
                /*
                private loadingCtrl: LoadingController,
                private _cas: CargaArchivosService,
-               private imagePicker: ImagePicker   //cargar de las imagenes nativas o del telefono
+               
 				*/
                ) {
   }
@@ -110,43 +113,52 @@ export class SubirPage {
 
   }
 
-/*
+
   seleccionar_fotos(){
 
-    if( !this.platform.is("cordova") ){
-      this.mostrar_toast("Error: No estamos en un celular");
-      return;
-    }
+        if( !this.platform.is("cordova") ){
+          this.mostrar_toast("Error: No estamos en un celular");
+          return;
+        }
 
-    let opciones: ImagePickerOptions = {
-      maximumImagesCount: 1,
-      quality: 40,
-      outputType: 1
-    }
-
-
-    this.imagePicker.getPictures(opciones).then((results) => {
+        let opciones: ImagePickerOptions = {
+          maximumImagesCount: 1,
+          quality: 40,
+          outputType: 1
+        }
 
 
-      for( let img of results ){
-        this.imgPreview = 'data:image/jpeg;base64,' + img
-        this.img = img;
-        break;
-      }
+        /*
+        this.imagePicker.getPictures(opciones).then((results) => {
+          for (var i = 0; i < results.length; i++) {
+              console.log('Image URI: ' + results[i]);
+          }
+        }, (err) => { });
+        */
 
 
-    }, (err) => {
-
-      this.mostrar_toast("Error seleccion:" + err);
-      console.error(  "Error en seleccion: " + JSON.stringify( err ) );
-
-    });
-
-  }
+        this.imagePicker.getPictures(opciones).then((results) => {
 
 
+          for( let img of results ){
+            this.imgPreview = 'data:image/jpeg;base64,' + img
+            this.img = img;
+            break;
+          }
 
-  */
+
+        }, (err) => {
+
+          this.mostrar_toast("Error seleccion:" + err);
+          console.error(  "Error en seleccion: " + JSON.stringify( err ) );
+
+        });
+
+}
+
+
+
+  
 
   private mostrar_toast( texto:string ){
 
