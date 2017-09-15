@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import {  NavParams, AlertController } from 'ionic-angular'; //NavController,
 import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
@@ -14,7 +14,7 @@ export class SignupPage {
   };
 
   constructor(
-    private navCtrl: NavController,
+  //  private navCtrl: NavController,
     private navParams: NavParams,
     private alertCtrl: AlertController,
     private afAuth: AngularFireAuth) {

@@ -31,7 +31,9 @@ import { Facebook } from '@ionic-native/facebook';
 
 //Logueo
 import { LoginPage } from '../pages/login/login';
-import { SignupPage } from '../pages/signup/signup';
+//import { SignupPage } from '../pages/signup/signup';
+
+import { AutenticacionServicioProvider } from '../providers/autenticacion-servicio/autenticacion-servicio';
 
 
 
@@ -41,8 +43,8 @@ import { SignupPage } from '../pages/signup/signup';
     HomePage,
     SubirPage,
     PlaceholderPipe,
-    LoginPage,
-    SignupPage
+    LoginPage
+    //SignupPage
 
   ],
   imports: [
@@ -59,8 +61,8 @@ import { SignupPage } from '../pages/signup/signup';
     MyApp,
     HomePage,
     SubirPage,
-    LoginPage,
-    SignupPage    
+    LoginPage
+    //SignupPage    
   ],
   providers: [
     StatusBar,
@@ -69,7 +71,8 @@ import { SignupPage } from '../pages/signup/signup';
     ImagePicker,
     CargaArchivosService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Facebook
+    Facebook,
+    AutenticacionServicioProvider
   ]
 })
 export class AppModule {}

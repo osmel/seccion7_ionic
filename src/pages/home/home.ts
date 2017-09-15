@@ -1,15 +1,20 @@
 import { Component } from '@angular/core';
 import {  ModalController } from 'ionic-angular';
 import { SubirPage } from "../subir/subir";
-import { AngularFireDatabase } from 'angularfire2/database'; //, FirebaseListObservable
 
 // servicios personalizado
 import { CargaArchivosService } from "../../providers/carga-archivos";
-//
-import { AngularFireAuth } from 'angularfire2/auth';
+
+
 
 import {  NavController } from 'ionic-angular';
-import { LoginPage } from '../../pages/login/login';
+import { AutenticacionServicioProvider } from '../../providers/autenticacion-servicio/autenticacion-servicio';
+
+
+
+//import { AngularFireDatabase } from 'angularfire2/database'; //, FirebaseListObservable
+//import { AngularFireAuth } from 'angularfire2/auth';
+
 
 /*
 
@@ -39,10 +44,11 @@ export class HomePage {
             public navCtrl: NavController,
             private modalCtrl:ModalController, 
             private _cas: CargaArchivosService,
-            private afAuth: AngularFireAuth,
+            private autservicio: AutenticacionServicioProvider
             
              
             /*
+              private afAuth: AngularFireAuth,
               private af: AngularFireDatabase
                
                private _auth: AuthService,
@@ -58,13 +64,9 @@ export class HomePage {
 
   }
 
-  salir() {  //signOut
-    
 
-    //this.navCtrl.push(LoginPage);
-    this.afAuth.auth.signOut();
-    //this.navCtrl.popToRoot();
-    //this.navCtrl.pop();
+  salir(): void { //signOut
+         this.autservicio.salir();
   }
 
 /*
