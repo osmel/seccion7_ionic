@@ -41,7 +41,7 @@ export class LoginPage {
   }
 
 
-  //Autenticar usuario y una vez autenticados tenemos que cambiar la página activa por la página misTabsPage.
+  //Autenticar usuario y una vez autenticados tenemos que cambiar la página activa por la página HomePage.
 
 ingresaCorreo() {
   this.autservicio.ingresarUsuarioCorreo(this.usuario.email,this.usuario.password )
@@ -55,10 +55,25 @@ ingresaCorreo() {
 }
 
 
+ingresaFacebook() {
+  this.autservicio.ingresarUsuarioFacebook()
+    .then((user) => 
+          {
+            //nos devuelve el usuario 
+          } )
+     .catch(err=>{
+         //nos devuelve error
+    })
+}
+
 
 
  /* 
 
+  ingresar(): void {
+    this._auth.signInWithFacebook()
+      .then(() => this.onSignInSuccess());
+  }
 
   ingresaFacebook() { //loginFacebook
     if (this.platform.is('cordova')) {

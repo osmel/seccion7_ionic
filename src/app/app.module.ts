@@ -26,8 +26,11 @@ import { AngularFireDatabaseModule } from 'angularfire2/database'; // solo neces
 import { AngularFireAuthModule } from 'angularfire2/auth';  // solo necesario para las caracteristicas de autenticación
 import { firebaseConfig } from '../config/firebase.config'; // variable de ambientes
 
-//facebook
+//loguearse en facebook de forma nativa
 import { Facebook } from '@ionic-native/facebook';
+
+//compartir facebook
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 //Logueo
 import { LoginPage } from '../pages/login/login';
@@ -72,6 +75,7 @@ import { AutenticacionServicioProvider } from '../providers/autenticacion-servic
     CargaArchivosService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Facebook,
+    SocialSharing,
     AutenticacionServicioProvider
   ]
 })

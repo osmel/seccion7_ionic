@@ -22,10 +22,12 @@ export class MyApp {
 
     platform.ready().then(() => {
       
-      this.autservicio.Session.subscribe(session=>{
+      this.autservicio.Session.subscribe((session: firebase.User)=>{
       //me suscribo al observador del proveedor
             if(session){
                 this.rootPage = HomePage;
+                
+                console.log(session.displayName); //caso de facebook si tiene displayName
             }
               else{
                 this.rootPage = LoginPage;
@@ -46,22 +48,4 @@ export class MyApp {
 }
 
    
-    /*
-
-    //import { AngularFireAuth } from 'angularfire2/auth';
-
-    this.afAuth.authState.subscribe(auth => {
-      if (!auth) {
-        console.log(" termino ");
-        this.rootPage = LoginPage;
-
-      } else {
-        console.log(auth);
-          //this.rootPage = HomePage;
-        //this.rootPage = LoginPage;
-        this.rootPage = HomePage;
-
-      }
-
-        
-    });*/
+  

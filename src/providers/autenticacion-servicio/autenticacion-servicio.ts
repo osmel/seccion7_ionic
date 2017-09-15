@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Platform } from 'ionic-angular';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 
 @Injectable()
 export class AutenticacionServicioProvider {
 
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth, 
+  			  private fb: Facebook,
+  			  private platform: Platform) { }
+
 
 	// Registro de usuario.  Función para dar de alta a usuarios.
 	//El Método createUserWithEmailAndPassword pasándole como parámetros el email y password creamos un nuevo usuario.
@@ -25,22 +31,24 @@ export class AutenticacionServicioProvider {
 	       .then(user=>Promise.resolve(user))
 	       .catch(err=>Promise.reject(err))
 	}
-/*
-$scope.authObj.$onAuthStateChanged(function(firebaseUser) {
-  if (firebaseUser) {
-    console.log("Signed in as:", firebaseUser.uid);
-  } else {
-    console.log("Signed out");
-  }
-});
 
-$scope.authObj.$createUserWithEmailAndPassword("my@email.com", "mypassword")
-  .then(function(firebaseUser) {
-    console.log("User " + firebaseUser.uid + " created successfully!");
-  }).catch(function(error) {
-    console.error("Error: ", error);
-  });
-*/
+
+ //Login de usuarioFacebook
+ ingresarUsuarioFacebook() {
+    if (this.platform.is('cordova')) {  //caso en que este en el celular
+      return this.fb.login(['email', 'public_profile']).then(res => {
+        const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+        return firebase.auth().signInWithCredential(facebookCredential);
+      })
+    }
+    else {  //caso en que este en la web
+      return this.afAuth.auth
+        .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+        .then(res => console.log(res));
+    }
+  }
+
+  
 
 	/*			// Devuelve la session
 	Entre get y Session() hay un espacio, es una peculiaridad de TypeScript que nos permite hacer "getters y setters" de esta manera: 
@@ -62,10 +70,6 @@ $scope.authObj.$createUserWithEmailAndPassword("my@email.com", "mypassword")
 	     // hemos salido
 	   })
 	 }
-/*
-
-Si está suscribiendo un observador en el método ngDestroy, debe destruir la suscripción this.subscription = yourservice.method () .subcribe (data ==> {this.mydata = data}); ngDestroy () {this.subcription.unsubscribe (); } Espero que te ayude
-*/
 
 }
 
