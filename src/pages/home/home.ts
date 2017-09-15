@@ -66,6 +66,7 @@ export class HomePage {
 
 
   salir(): void { //signOut
+         this._cas.quitarsuscripcion();
          this.autservicio.salir();
   }
 

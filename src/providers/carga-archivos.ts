@@ -17,6 +17,7 @@ export class CargaArchivosService {
 
   imagenes:any[] = [];
   lastKey:string = undefined;  //ultimo registro que tengo en ese momento
+  public suscripcion : any;
 
     // posts: FirebaseListObservable<any[]>;
   constructor( public af: AngularFireDatabase,
@@ -88,7 +89,7 @@ cargar_imagenes_firebase( archivo:archivoSubir ){
 
     return new Promise(  (resolve, reject)=>{
           
-      this.af.list("/posts", {
+      this.suscripcion = this.af.list("/posts", {
 
         query: {   //aqui hacemos un query
           limitToLast: 4,   //quiero cargar los ultimos 4
@@ -124,10 +125,21 @@ cargar_imagenes_firebase( archivo:archivoSubir ){
       })
 
 
-    })
+
+    });
+
+     
 
 
   }
+
+
+ //esto es muy importante porque todas las suscripciones tienen que eliminarse antes de cerrar session
+ quitarsuscripcion() {
+     this.suscripcion.unsubscribe(); 
+ }
+
+
 
  
 
